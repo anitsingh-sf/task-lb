@@ -54,6 +54,27 @@ export class UsersController {
     return this.usersRepository.find(filter);
   }
 
+  @get('/users/{customer}', {
+    responses: {
+      '200': {
+        description: 'Array of Users belonging to customer',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'array',
+              items: getModelSchemaRef(Users, {includeRelations: true}),
+            },
+          },
+        },
+      },
+    },
+  })
+  async findByCustomer(
+    @param.path.string('customer') customer: string
+  ): Promise<Users[]> {
+    return this.usersRepository.find({where: {customer: customer}});
+  }
+
   @put('/users/{id}', {
     responses: {
       '204': {

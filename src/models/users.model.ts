@@ -1,6 +1,6 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model({settings: {strict: false}})
+@model({settings: {strict: true}})
 export class Users extends Entity {
   @property({
     type: 'number',
@@ -40,10 +40,10 @@ export class Users extends Entity {
   phone: string;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
   })
-  role: number;
+  role: string;
 
   @property({
     type: 'string',
@@ -52,10 +52,10 @@ export class Users extends Entity {
   address?: string;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
   })
-  customer: number;
+  customer: string;
 
   @property({
     type: 'date',
