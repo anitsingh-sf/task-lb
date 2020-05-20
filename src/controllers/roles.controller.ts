@@ -24,9 +24,7 @@ export class RolesController {
       },
     },
   })
-  async find(
-    @param.filter(Roles) filter?: Filter<Roles>,
-  ): Promise<Roles[]> {
+  async find(@param.filter(Roles) filter?: Filter<Roles>): Promise<Roles[]> {
     return this.rolesRepository.find(filter);
   }
 }

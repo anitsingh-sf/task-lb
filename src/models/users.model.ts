@@ -17,7 +17,7 @@ export class Users extends Entity {
 
   @property({
     type: 'string',
-    allowNull: true
+    allowNull: true,
   })
   middlename?: string;
 
@@ -47,7 +47,7 @@ export class Users extends Entity {
 
   @property({
     type: 'string',
-    allowNull: true
+    allowNull: true,
   })
   address?: string;
 

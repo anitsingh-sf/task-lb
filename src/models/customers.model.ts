@@ -27,7 +27,6 @@ export class Customers extends Entity {
   })
   address?: string;
 
-
   constructor(data?: Partial<Customers>) {
     super(data);
   }

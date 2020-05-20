@@ -1,5 +1,13 @@
 import {Filter, repository} from '@loopback/repository';
-import {del, get, getModelSchemaRef, param, post, put, requestBody} from '@loopback/rest';
+import {
+  del,
+  get,
+  getModelSchemaRef,
+  param,
+  post,
+  put,
+  requestBody,
+} from '@loopback/rest';
 import {Users} from '../models';
 import {UsersRepository} from '../repositories';
 
@@ -48,9 +56,7 @@ export class UsersController {
       },
     },
   })
-  async find(
-    @param.filter(Users) filter?: Filter<Users>,
-  ): Promise<Users[]> {
+  async find(@param.filter(Users) filter?: Filter<Users>): Promise<Users[]> {
     return this.usersRepository.find(filter);
   }
 
@@ -70,7 +76,7 @@ export class UsersController {
     },
   })
   async findByCustomer(
-    @param.path.string('customer') customer: string
+    @param.path.string('customer') customer: string,
   ): Promise<Users[]> {
     return this.usersRepository.find({where: {customer: customer}});
   }
@@ -97,7 +103,7 @@ export class UsersController {
       },
     },
   })
-  async deleteById(@param.path.number('id') id: number): Promise<void> {
+  async deleteUser(@param.path.number('id') id: number): Promise<void> {
     await this.usersRepository.deleteById(id);
   }
 }

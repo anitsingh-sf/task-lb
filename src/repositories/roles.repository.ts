@@ -8,9 +8,7 @@ export class RolesRepository extends DefaultCrudRepository<
   typeof Roles.prototype.index,
   RolesRelations
 > {
-  constructor(
-    @inject('datasources.db') dataSource: DbDataSource,
-  ) {
+  constructor(@inject('datasources.db') dataSource: DbDataSource) {
     super(Roles, dataSource);
   }
 }

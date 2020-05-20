@@ -1,5 +1,13 @@
 import {Filter, repository} from '@loopback/repository';
-import {del, get, getModelSchemaRef, param, post, put, requestBody} from '@loopback/rest';
+import {
+  del,
+  get,
+  getModelSchemaRef,
+  param,
+  post,
+  put,
+  requestBody,
+} from '@loopback/rest';
 import {Customers} from '../models';
 import {CustomersRepository} from '../repositories';
 
