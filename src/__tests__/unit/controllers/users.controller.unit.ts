@@ -46,6 +46,17 @@ describe('UsersController', () => {
     });
   });
 
+  describe('find users by customer', () => {
+    it('returns a users lists with the same customer', async () => {
+      const find = usersRepo.stubs.find;
+      find.resolves(listOfUsers);
+      expect(
+        await controller.findByCustomer(listOfUsers[0].customer as string),
+      ).to.eql(listOfUsers);
+      sinon.assert.calledWith(find);
+    });
+  });
+
   describe('update user', () => {
     it('succesfully updates', async () => {
       const replaceById = usersRepo.stubs.replaceById;
