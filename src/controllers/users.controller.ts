@@ -3,6 +3,7 @@ import {
   del,
   get,
   getModelSchemaRef,
+  HttpErrors,
   param,
   post,
   put,
@@ -37,7 +38,9 @@ export class UsersController {
       },
     })
     users: Omit<Users, 'index'>,
+    flag: boolean,
   ): Promise<Users> {
+    if (!flag) throw new HttpErrors.InternalServerError();
     return this.usersRepository.create(users);
   }
 

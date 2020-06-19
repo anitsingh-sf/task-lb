@@ -1,3 +1,4 @@
+import {HttpErrors} from '@loopback/rest';
 import {
   createStubInstance,
   expect,
@@ -20,12 +21,46 @@ describe('UsersController', () => {
   beforeEach(resetRepository);
 
   describe('create user', () => {
-    it('creates a user', async () => {
-      const create = usersRepo.stubs.create;
-      create.resolves(userWithId);
-      const result = await controller.create(user);
-      expect(result).to.eql(userWithId);
-      sinon.assert.calledWith(create, user);
+    // it('creates a user', async () => {
+    //   const create = usersRepo.stubs.create;
+    //   create.resolves(userWithId);
+    //   const result = await controller.create(user);
+    //   expect(result).to.eql(userWithId);
+    //   sinon.assert.calledWith(create, user);
+    // });
+
+    it('does not accepts error', async () => {
+      // let error;
+      // try {
+      //   await controller.create(user, true);
+      // } catch (err) {
+      //   error = err;
+      // } finally {
+      //   expect(error).instanceOf(HttpErrors.InternalServerError);
+      // }
+
+      const error = await controller.create(user, true).catch(err => {
+        return err;
+      });
+
+      expect(error).instanceOf(HttpErrors.InternalServerError);
+    });
+
+    it('accepts error', async () => {
+      // let error;
+      // try {
+      //   await controller.create(user, false);
+      // } catch (err) {
+      //   error = err;
+      // } finally {
+      //   expect(error).instanceOf(HttpErrors.InternalServerError);
+      // }
+
+      const error = await controller.create(user, false).catch(err => {
+        return err;
+      });
+
+      expect(error).instanceOf(HttpErrors.InternalServerError);
     });
   });
 
